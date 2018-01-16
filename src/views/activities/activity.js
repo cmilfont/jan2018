@@ -76,11 +76,6 @@ class Activity extends React.Component {
 
   transformLink = description => (description.replace(this.pattern, this.replaceStringToURL))
 
-  remove = () => {
-    const { id } = this.props;
-    this.props.removeActivity({id});
-  }
-
   edit = () => {
     const {
       id,
@@ -127,6 +122,7 @@ class Activity extends React.Component {
         <Divider />
         <Toolbar
           classes={classes}
+          edit={this.edit}
         />
       </ExpansionPanel>
     );

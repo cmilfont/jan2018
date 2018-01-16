@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import ExpansionPanel, {
   ExpansionPanelActions,
@@ -6,8 +7,13 @@ import ExpansionPanel, {
 
 class Toolbar extends React.Component {
 
+  static contextTypes = {
+    remove: PropTypes.func,
+  }
+
   render() {
-    const { classes, remove, edit } = this.props;
+    const { remove } = this.context;
+    const { classes, edit } = this.props;
     return (
       <ExpansionPanelActions>
           <Button
