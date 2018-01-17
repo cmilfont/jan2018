@@ -25,8 +25,15 @@ class Provider extends Component {
   }
 
   reconciliation = (reducer, action) => {
-    this.setState({
+    const newState = {
       data: reducer(this.state.data, action)
+    };
+
+    this.setState(newState, () => {
+      const middleware = this.store.getMiddleware();
+      if (middleware) {
+        middleware(this.store, action);
+      }
     });
   }
 

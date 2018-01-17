@@ -1,13 +1,12 @@
 import React from 'react';
-import Toolbar from './toolbar';
-import connect from './connect';
+import Toolbar from 'views/tools/toolbar';
+import connect from 'views/tools/connect';
 
 const mapping = (data, dispatch, originalProps) => {
   return {
     primaryAction: () => {
       dispatch({
-        type: 'EDIT',
-        payload: originalProps.model,
+        type: 'SAVE',
       })
     }
   }

@@ -16,8 +16,7 @@ import blue from 'material-ui/colors/blue';
 import ismobile from 'ismobilejs';
 import moment from 'moment';
 
-import Toolbar from 'views/tools/toolbar';
-import Wrapper from 'views/tools/wrapper';
+import Toolbar from 'views/activities/editToolbarContainer';
 
 const styles = theme => ({
   root: {
@@ -87,10 +86,6 @@ class Activity extends React.Component {
     this.props.onChange({description});
   }
 
-  save = () => {
-    this.props.saveEditActivity();
-  }
-
   render() {
     const {
       activity,
@@ -129,14 +124,11 @@ class Activity extends React.Component {
           />
         </ExpansionPanelDetails>
         <Divider />
-        <Wrapper>
-          <Toolbar
-            primaryLabel="SAVE"
-            secondaryLabel="CANCEL"
-            model={activity}
-            classes={classes}
-          />
-        </Wrapper>
+        <Toolbar
+          primaryLabel="SAVE"
+          secondaryLabel="CANCEL"
+          classes={classes}
+        />
       </ExpansionPanel>
     );
   }

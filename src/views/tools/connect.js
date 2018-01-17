@@ -11,7 +11,7 @@ class Wrapper extends React.Component {
   render() {
     const { dispatch, data } = this.context;
     const { mapping, component, ...originalProps } = this.props;
-    const defaultProps = mapping? mapping(data, dispatch) : null;
+    const defaultProps = mapping? mapping(data, dispatch, originalProps) : null;
     const newProps = {
       ...defaultProps,
       data,

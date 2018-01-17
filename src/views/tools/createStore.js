@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-const createStore = (reducer, initialState) => {
+const createStore = (reducer, initialState, middleware) => {
 
   let provider;
 
   return {
+    getMiddleware: () => {
+      return middleware;
+    },
     getState: () => {
       return initialState;
     },
