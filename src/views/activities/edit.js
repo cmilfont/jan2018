@@ -16,6 +16,9 @@ import blue from 'material-ui/colors/blue';
 import ismobile from 'ismobilejs';
 import moment from 'moment';
 
+import Toolbar from 'views/tools/toolbar';
+import Wrapper from 'views/tools/wrapper';
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -90,6 +93,7 @@ class Activity extends React.Component {
 
   render() {
     const {
+      activity,
       activity: { description, loggedAt },
       kind,
       color,
@@ -125,25 +129,14 @@ class Activity extends React.Component {
           />
         </ExpansionPanelDetails>
         <Divider />
-        <ExpansionPanelActions>
-          <Button
-            raised
-            dense
-            color="accent"
-            className={classes.button}
-            onClick={this.props.cancelEditActivity}
-          >
-            CANCEL
-          </Button>
-          <Button
-            raised
-            dense
-            color="accent"
-            onClick={this.save}
-          >
-            SAVE
-          </Button>
-        </ExpansionPanelActions>
+        <Wrapper>
+          <Toolbar
+            primaryLabel="SAVE"
+            secondaryLabel="CANCEL"
+            model={activity}
+            classes={classes}
+          />
+        </Wrapper>
       </ExpansionPanel>
     );
   }

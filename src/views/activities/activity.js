@@ -14,7 +14,7 @@ import red from 'material-ui/colors/red';
 import blue from 'material-ui/colors/blue';
 import ismobile from 'ismobilejs';
 
-import Toolbar from 'views/tools/toolbar';
+import Toolbar from 'views/tools/toolbarContainer';
 
 const styles = theme => ({
   root: {
@@ -76,17 +76,18 @@ class Activity extends React.Component {
 
   transformLink = description => (description.replace(this.pattern, this.replaceStringToURL))
 
-  edit = () => {
-    const {
-      id,
-      description,
-      loggedAt,
-    } = this.props;
-    this.props.editActivity({id, description, loggedAt});
-  }
+  // edit = () => {
+  //   const {
+  //     id,
+  //     description,
+  //     loggedAt,
+  //   } = this.props;
+  //   this.props.editActivity({id, description, loggedAt});
+  // }
 
   render() {
     const {
+      id,
       kind,
       color,
       description,
@@ -96,6 +97,15 @@ class Activity extends React.Component {
     const shortDescription = (ismobile.phone && description.length > 19) ? 
       `${description.substring(0, 20)}...` : description;
     const formattedDescription = this.transformLink(description);
+
+    const activity = {
+      id,
+      kind,
+      color,
+      description,
+      loggedAt,
+    };
+
     return (
       <ExpansionPanel>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -121,8 +131,10 @@ class Activity extends React.Component {
         </ExpansionPanelDetails>
         <Divider />
         <Toolbar
+          primaryLabel="EDIT"
+          secondaryLabel="REMOVE"
+          model={activity}
           classes={classes}
-          edit={this.edit}
         />
       </ExpansionPanel>
     );

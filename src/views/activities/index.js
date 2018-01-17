@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ListSubheader from 'material-ui/List/ListSubheader';
 import moment from 'moment';
 import Activity from './activity';
@@ -9,23 +8,8 @@ const url = 'http://biohacking.herokuapp.com/graphql?query=query%20%7B%0A%20%20t
 
 class Activities extends React.Component {
 
-  static childContextProps = {
-    remove: PropTypes.func,
-  }
-
-  state = {
-    activity: {},
-    list: [],
-  }
-
-  getChildContext() {
-    return {
-      remove: this.removeActivity,
-    }
-  }
-
   removeActivity(id) {
-
+    debugger;
   }
 
   onChange = (activity) => {
@@ -62,17 +46,16 @@ class Activities extends React.Component {
 
   componentDidMount() {
     fetch(url).then(r => r.json()).then(list => {
-      this.setState({
-        activity: {},
-        list: list.data.todayActivities,
-      })
+      this.props.dispatch({
+        type: 'LISTA',
+        payload: list.data.todayActivities
+      });
     });
   }
 
   render() {
-    const { list, activity } = this.state;
+    const { data: { list, activity } } = this.props;
     const activities = list.map(item => {
-      // const removeFn = this.removeActivity.bind(this, item.id);
       return (
         (activity.id && item.id === activity.id) ?
         <EditActivity
