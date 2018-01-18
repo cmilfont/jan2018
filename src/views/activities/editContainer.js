@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Edit from './edit';
-import connect from 'views/tools/connect';
 
-const mapping = (data, dispatch, originalProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onChange: (payload) => {
       dispatch({
@@ -13,4 +13,4 @@ const mapping = (data, dispatch, originalProps) => {
   }
 };
 
-export default connect(mapping, Edit);
+export default connect(null, mapDispatchToProps)(Edit);

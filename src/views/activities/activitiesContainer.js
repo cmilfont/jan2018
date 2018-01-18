@@ -1,17 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Activities from './index';
-import connect from 'views/tools/connect';
 
-const mapping = (data, dispatch, originalProps) => {
+const mapStateToProps = (state) => {
   return {
-    list: data.list,
-    activity: data.activity,
+    list: state.list,
+    activity: state.activity,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
     load: () => {
       dispatch({
         type: 'LOAD',
       })
     }
   }
-};
+}
 
-export default connect(mapping, Activities);
+const wrapperConstructor = connect(mapStateToProps, mapDispatchToProps);
+
+export default wrapperConstructor(Activities);

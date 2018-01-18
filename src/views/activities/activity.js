@@ -76,15 +76,6 @@ class Activity extends React.Component {
 
   transformLink = description => (description.replace(this.pattern, this.replaceStringToURL))
 
-  // edit = () => {
-  //   const {
-  //     id,
-  //     description,
-  //     loggedAt,
-  //   } = this.props;
-  //   this.props.editActivity({id, description, loggedAt});
-  // }
-
   render() {
     const {
       id,

@@ -1,8 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Toolbar from 'views/tools/toolbar';
-import connect from 'views/tools/connect';
 
-const mapping = (data, dispatch, originalProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     primaryAction: () => {
       dispatch({
@@ -12,4 +12,4 @@ const mapping = (data, dispatch, originalProps) => {
   }
 };
 
-export default connect(mapping, Toolbar);
+export default connect(null, mapDispatchToProps)(Toolbar);

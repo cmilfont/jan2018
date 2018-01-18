@@ -1,16 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Toolbar from './toolbar';
-import connect from './connect';
 
-const mapping = (data, dispatch, originalProps) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     primaryAction: () => {
       dispatch({
         type: 'EDIT',
-        payload: originalProps.model,
+        payload: null,
       })
     }
   }
 };
 
-export default connect(mapping, Toolbar);
+export default connect(null, mapDispatchToProps)(Toolbar);
